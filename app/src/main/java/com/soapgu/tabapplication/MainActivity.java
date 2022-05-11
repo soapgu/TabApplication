@@ -10,6 +10,9 @@ import com.soapgu.tabapplication.adapters.MyFragmentAdapter;
 import com.soapgu.tabapplication.mvvm.MVVMActivity;
 import com.soapgu.tabapplication.viewmodels.MainViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends MVVMActivity<MainViewModel> {
     ViewPager2 viewPager;
 

@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.soapgu.tabapplication.MemberFragment;
+import com.soapgu.tabapplication.fragments.MemberFragment;
 import com.soapgu.tabapplication.fragments.HomeFragment;
 import com.soapgu.tabapplication.fragments.MutiLayoutFragment;
 
