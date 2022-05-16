@@ -1,7 +1,13 @@
 package com.soapgu.tabapplication.fragments;
 
+import android.content.ClipData;
 import android.os.Bundle;
+import android.view.DragEvent;
+import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.fragment.app.Fragment;
 
@@ -37,5 +43,33 @@ public class HomeFragment extends MVVMFragment<HomeViewModel> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.card_one).setOnLongClickListener( v -> {
+            ClipData clipData = ClipData.newPlainText("number","1");
+            v.startDragAndDrop(clipData,new View.DragShadowBuilder(v),null,0);
+            return true;
+        } );
+
+        view.findViewById(R.id.card_two).setOnLongClickListener( v -> {
+            ClipData clipData = ClipData.newPlainText("number","2");
+            v.startDragAndDrop(clipData,new View.DragShadowBuilder(v),null,0);
+            return true;
+        } );
+
+        view.findViewById(R.id.view_receive).setOnDragListener((v, event) -> {
+            switch (event.getAction()){
+                case DragEvent.ACTION_DROP:
+                    ClipData clipData = event.getClipData();
+                    String text = clipData.getItemAt(0).getText().toString();
+                    Toast toast = Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT);
+                    toast.show();
+                    break;
+            }
+            return true;
+        });
     }
 }
